@@ -1,0 +1,15 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: DEPLOYMENTNAME_REPLACEMEingress
+spec:
+  rules:
+  - host: HOSTNAME_REPLACEME
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: KUBESVCNAME_REPLACEME
+          servicePort: PORTNUMBER_REPLACEME
+
