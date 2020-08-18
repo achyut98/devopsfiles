@@ -1,0 +1,47 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: DEPLOYMENTNAME_REPLACEME
+spec:
+  replicas: REPLICAS_REPLACEME
+  template:
+    metadata:
+      name: KUBESVCNAME_REPLACEME
+      labels:
+        run: DEPLOYMENTNAME_REPLACEME
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: run
+                      operator: In
+                      values:
+                        - DEPLOYMENTNAME_REPLACEME
+                topologyKey: kubernetes.io/hostname
+      containers:
+        - name: DEPLOYMENTNAME_REPLACEMEimage
+          image: IMAGENAME_REPLACEME
+          env:
+            - name: spring_profile
+              value: "SPRINGVALUE_REPLACEME"
+             - name: run_time_param
+              value: "RUNTIMEPARAMS_REPLACEME"
+          ports:
+            - containerPort: PORTNUMBER_REPLACEME
+          resources:
+            limits:
+              cpu: 2000m
+              memory: CONTAINERMEMMAX_REPLACEME
+            requests:
+              cpu: 500m
+              memory: CONTAINERMEMMIN_REPLACEME
+          livenessProbe:
+            tcpSocket:
+              port: PORTNUMBER_REPLACEME
+            initialDelaySeconds: 300
+            periodSeconds: 10
+

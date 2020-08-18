@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: KUBESVCNAME_REPLACEME
+  labels:
+    run: DEPLOYMENTNAME_REPLACEME
+spec:
+  selector:
+    run: DEPLOYMENTNAME_REPLACEME
+  type: NodePort
+  ports:
+   - protocol: TCP
+     port: PORTNUMBER_REPLACEME
+
